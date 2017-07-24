@@ -1,0 +1,76 @@
+{% load staticfiles %}
+
+<html>
+
+<head>
+<link rel="stylesheet" href={% static 'comments/style.css' %}>
+<meta charset='utf-8'>
+<title> Мега блог </title>
+</head>
+<body>
+<header>
+<div  id="logo"><img src ={% static 'comments/logo.png' %} width="150px" height="100px"  alt="logo"></div>
+<div  id="welcome"><p><b> Privet </b></p> </div>
+<div  id="search">
+
+<div>
+<ul>
+{% if user.is_authenticated %}
+    <li> Welcome: <a href={% url 'profile' %}> {{ user.username }} </a> </li>
+	<li> <a href={% url 'logout' %}> Logout </a></li>
+{% else %}
+    <li><a href={% url 'signup' %}> Register here </a></li>
+	<li><a href={% url 'signin' %}> Sign in here </a></li>
+{% endif %}
+</ul>
+</div>
+
+</div>
+</header>
+
+<div id="contain">
+<div id="menu">
+<ul> {% for i in posts %}
+<li><a href={% url 'simple-post' i.id %}> {{ i.name }} </a></li>
+{% endfor%}
+</ul>
+</div>
+<div id="central">
+<h3>{{ post.name }}</h3>
+<p> {{ post.text }}</p>
+</div>
+<div id="rcolumn">
+<form  method="get" action={% url 'new-comment' post.id %}>
+{% if user.is_authenticated %}
+ {{ CommentForm }} 
+<input value="Send" type ="submit">
+{% else %}
+<li> зарегистрируйтесь или авторизуйтесь, чтобы оставлять коментарии </li>
+{% endif %}
+</form>
+
+<div id="comments">
+{% for b in post.comment_set.all %}
+<div class="comment">
+{% if user.is_authenticated %}
+<h3> <a href={% url 'profile' %}> {{ user.username }} </a> </h3>
+{% else %}
+<h3> {{ b.user.username }} </h3>
+{% endif %}
+<p> {{ b.text }} </p>
+<p><b> {{ b.date_created }} </b></p>
+<a href={% url 'delete-comment' b.id %}>Удалить комментарий</a>
+</div>{% endfor%}
+</div>
+
+</div>
+</div>
+<footer>
+<div id="down"><img src ={% static 'comments/ggg.png' %} height="150px" width="100%" alt="down"></div>
+
+</footer>
+
+</body>
+</html>
+
+

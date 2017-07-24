@@ -1,0 +1,70 @@
+* {
+padding: 0;
+margin: 0;
+}
+
+div {
+	float: left;
+}
+
+#logo {
+	width = "150px";
+	}
+	
+#search {
+	margin-left: 65%;
+	width: 15,5%;
+}
+
+#welcome {
+	margin-left:35%;
+	width:9%;
+}
+
+#contain {
+	float: left;
+	width: 100%;
+}
+
+#menu {
+	float:left;
+	width: 30%;
+}
+#rcolumn {
+	float:left;
+	width: 30%;
+}
+#rcolumn > form > textarea{
+	width:302px;
+	height:152px;
+	resize:none;
+}
+	
+#central {
+	float: left;
+	width: 40%;
+}
+.comment {
+	float:left;
+	width: 100%;
+	}
+
+#comments {
+	float:left;
+	border: black solid 2px;
+	width:298px;
+}
+
+header {
+	float: left;
+	width: 100%;
+}
+#down {
+	float:left;
+	padding-top: 180px;
+}
+
+#icon {
+	margin-right-side;
+	padding-top: 240px;
+}
